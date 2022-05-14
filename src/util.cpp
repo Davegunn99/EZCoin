@@ -559,9 +559,34 @@ boost::filesystem::path GetConfigFile(const std::string& confPath)
 
 void ReadConfigFile(const std::string& confPath)
 {
+//    boost::filesystem::ifstream streamConfig(GetConfigFile(confPath));
+//    if (!streamConfig.good())
+//        return; // No bitcoin.conf file is OK
+
     boost::filesystem::ifstream streamConfig(GetConfigFile(confPath));
-    if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+    if (!streamConfig.good()){
+        // Create empty .conf if it does not exist
+        FILE* configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
+//        if (configFile != NULL)
+//            fclose(configFile);
+
+        if (configFile != NULL) {
+            std::string strHeader = "# EZCoin config file\n"
+                          "\n"
+                          "# ADDNODES:\n"
+                          "addnode=node01.myezcoin.com\n"
+                          "addnode=node02.myezcoin.com\n"
+                          "addnode=node03.myezcoin.com\n"
+                          "addnode=45.77.96.164:44804\n"
+                          "addnode=45.76.4.236:44804\n"
+                          "addnode=103.249.70.56:44804\n"
+                          "addnode=103.249.70.56:44814\n";
+
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+            fclose(configFile);
+        }
+        return; // Nothing to read, so just return
+    }
 
     {
         LOCK(cs_args);
