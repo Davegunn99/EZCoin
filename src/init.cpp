@@ -507,22 +507,42 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/Davegunn99/EZCoin>";
-    const std::string URL_WEBSITE = "<www.myezcoin.com>";
+    const std::string URL_WEBSITE = "<https://myezcoin.com/>";
+    const std::string URL_EXPLORER = "<https://explorer.myezcoin.com/>";
+    const std::string URL_OFFICIALPOOL = "<https://pool.myezcoin.com/>";
+    const std::string URL_WALLETS = "<https://github.com/Davegunn99/EZCoin/releases/latest>";
+    const std::string URL_DISCORD = "<https://discord.gg/jQsvTpCpwu>";
+    const std::string URL_TWITTER = "<https://twitter.com/OfficialEZCoin/>";
+    const std::string URL_TELEGRAM = "<https://t.me/ezcoincrypto/>";
 
-    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2022, COPYRIGHT_YEAR) + " ") + "\n" +
+
+//    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2022, COPYRIGHT_YEAR) + " ") + "\n" +
+    return
            "\n" +
-           strprintf(_("Please contribute if you find %s useful. "
-                       "Visit %s for further information about the software."),
-               PACKAGE_NAME, URL_WEBSITE) +
+           strprintf(_("Website: %s"), + "\n" +
+               URL_WEBSITE) +
            "\n" +
-           strprintf(_("The source code is available from %s."),
-               URL_SOURCE_CODE) +
+           _("--------------------------------------------") + "\n" +
+           strprintf(_("Explorer %s"), + "\n" +
+               URL_EXPLORER) +
+           "\n" +
+           _("--------------------------------------------") + "\n" +
+           strprintf(_("Official Pool: %s"), + "\n" +
+               URL_OFFICIALPOOL) +
+           "\n" +
+           _("--------------------------------------------") + "\n" +
+           strprintf(_("Discord: %s"), + "\n" +
+               URL_DISCORD) +
+           "\n" +
+           _("--------------------------------------------") + "\n" +
+           strprintf(_("Telegram: %s"), + "\n" +
+               URL_TELEGRAM) +
+           "\n" +
+           _("----------------------------------------------------------------------------------------") + "\n" +
            "\n" +
            "\n" +
-           _("This is experimental software.") + "\n" +
-           strprintf(_("Distributed under the MIT software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/MIT>") + "\n" +
            "\n" +
-           strprintf(_("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard."), "<https://www.openssl.org>") +
+           strprintf(_("This is a software distributed under the MIT software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/MIT>") + "\n" +
            "\n";
 }
 
