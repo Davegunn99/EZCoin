@@ -2241,10 +2241,9 @@ bool CConnman::Start(CScheduler& scheduler, std::string& strNodeError, Options c
     int64_t nStart = GetTimeMillis();
     {
         CAddrDB adb;
-//        if (adb.Read(addrman))
-//            LogPrintf("Loaded %i addresses from peers.dat  %dms\n", addrman.size(), GetTimeMillis() - nStart);
-//        else {
-	{
+        if (adb.Read(addrman))
+            LogPrintf("Loaded %i addresses from peers.dat  %dms\n", addrman.size(), GetTimeMillis() - nStart);
+        else {
             addrman.Clear(); // Addrman can be in an inconsistent state after failure, reset it
             LogPrintf("Invalid or missing peers.dat; recreating\n");
             DumpAddresses();
